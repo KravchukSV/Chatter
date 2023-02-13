@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User List</title>
+    <div th:replace="parts/common::common"></div>
+</head>
+<body>
+<div th:replace="parts/navbar::navbar"></div>
+
+<div class="container mt-5">
+    List of users
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.roles}"></td>
+            <td><a th:href="@{/user/{id}(id = ${user.id})}">edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="parts/common::links"></div>
+</body>
+</html>

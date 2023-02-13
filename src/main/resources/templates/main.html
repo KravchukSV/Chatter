@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Main</title>
+  <div th:replace="parts/common::common"></div>
+</head>
+<body>
+<div th:replace="parts/navbar::navbar"></div>
+
+<div class="container mt-5">
+
+  <div class="form-row">
+    <div class="form-group col-m-6">
+      <form method="get" th:action="@{/main}" class="form-inline">
+        <input type="text" name="filter" th:value="${filter}" class="form-control" placeholder="Search by tag">
+        <button class="btn btn-primary m-2" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Add new Message
+  </a>
+  <div class="collapse" id="collapseExample">
+    <div class="form-group m-3">
+      <form method="post" th:action="@{/main}" enctype="multipart/form-data">
+        <div class="form-group">
+          <input type="text" class="form-control" name="text" placeholder="Введіть повідомлення" />
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" name="tag" placeholder="Тег"/>
+        </div>
+
+        <div class="form-group">
+          <div class="custom-file">
+            <input type="file" name="file" id="customFile" class="form-control">
+            <label class="form-label" for="customFile"></label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Додати</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="card-group">
+    <div th:each="message : ${messages}">
+      <div class="card m-3" style="width: 18rem;">
+        <div th:if="${message.filename}">
+          <img th:src="'/img/' + ${message.filename}" class="card-img-top">
+        </div>
+        <div class="m-2">
+          <span th:text="${message.text}"></span>
+          <i th:text="${message.tag}"></i>
+        </div>
+        <div class="card-footer text-muted">
+          <strong th:text="${message.authorName}"></strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div th:replace="parts/common::links"></div>
+</body>
+</html>
