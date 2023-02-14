@@ -18,7 +18,18 @@
           </li>
         </ul>
       </div>
-      <div class="navbar-text m-3" th:text="${#authentication.name}"></div>
+
+      <div class="navbar-text m-1" th:text="${#authentication.name}!='anonymousUser'?${#authentication.name}:'Guest'"></div>
+      <form action="login">
+        <button class="btn btn-primary m-1" type="submit" sec:authorize="!isAuthenticated()">
+          Login
+        </button>
+      </form>
+      <form action="registration">
+        <button class="btn btn-primary m-1" type="submit" sec:authorize="!isAuthenticated()">
+          Registration
+        </button>
+      </form>
       <div th:replace="~{parts/login::logout}" sec:authorize="isAuthenticated()"></div>
     </div>
   </nav>

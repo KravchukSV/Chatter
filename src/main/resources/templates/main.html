@@ -7,7 +7,7 @@
 <body>
 <div th:replace="parts/navbar::navbar"></div>
 
-<div class="container mt-5">
+<div class="container mt-2">
 
   <div class="form-row">
     <div class="form-group col-m-6">
@@ -48,7 +48,7 @@
 
   <div class="card-group">
     <div th:each="message : ${messages}">
-      <div class="card m-3" style="width: 18rem;">
+      <div class="card m-3" style="width: 12rem;">
         <div th:if="${message.filename}">
           <img th:src="'/img/' + ${message.filename}" class="card-img-top">
         </div>

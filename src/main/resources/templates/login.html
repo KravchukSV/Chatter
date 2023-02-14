@@ -8,6 +8,9 @@
 <div th:replace="parts/navbar::navbar"></div>
   <div class="container mt-5">
     Login Page
+    <div th:if="${message}">
+      <p th:text="${message}"></p>
+    </div>
     <div th:replace="~{parts/login::login(path=@{/login}, isRegisterForm=false)}"></div>
   </div>
 
