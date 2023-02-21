@@ -3,19 +3,37 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label"> User Name :  </label>
       <div class="col-sm-6">
-        <input type="text" name="username" class="form-control" placeholder="User name"/>
+        <input type="text" name="username" th:value="${user}?${user.username}"
+               th:class="'form-control ' + (${usernameError}?'is-invalid':'')"
+               placeholder="User name"/>
+        <div class="invalid-feedback" th:if="${usernameError}" th:text="${usernameError}"/>
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label"> Password: </label>
       <div class="col-sm-6">
-        <input type="password" name="password" class="form-control" placeholder="Password"/>
+        <input type="password" name="password"
+               th:class="'form-control ' + (${passwordError}?'is-invalid':'')"
+               placeholder="Password"/>
+        <div class="invalid-feedback" th:if="${passwordError}" th:text="${passwordError}"/>
+      </div>
+    </div>
+    <div class="form-group row" th:if="${isRegisterForm}">
+      <label class="col-sm-2 col-form-label"> Password: </label>
+      <div class="col-sm-6">
+        <input type="password" name="password2"
+               th:class="'form-control ' + (${password2Error}?'is-invalid':'')"
+               placeholder="Retype password"/>
+        <div class="invalid-feedback" th:if="${password2Error}" th:text="${password2Error}"/>
       </div>
     </div>
     <div class="form-group row" th:if="${isRegisterForm}">
       <label class="col-sm-2 col-form-label"> Email: </label>
       <div class="col-sm-6">
-        <input type="email" name="email" class="form-control" placeholder="some@some.com"/>
+        <input type="email" name="email" th:value="${user}?${user.email}"
+               th:class="'form-control ' + (${emailError}?'is-invalid':'')"
+               placeholder="some@some.com"/>
+        <div class="invalid-feedback" th:if="${emailError}" th:text="${emailError}"/>
       </div>
     </div>
       <a  th:if="!${isRegisterForm}" th:href="@{/registration}">Add new user</a>

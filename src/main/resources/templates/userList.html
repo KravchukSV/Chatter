@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>User List</title>
-    <div th:replace="parts/common::common"></div>
+    <div th:replace="~{parts/common::common}"></div>
 </head>
 <body>
-<div th:replace="parts/navbar::navbar"></div>
+<div th:replace="~{parts/navbar::navbar}"></div>
 
 <div class="container mt-5">
     List of users
@@ -27,6 +27,6 @@
     </table>
 </div>
 
-<div th:replace="parts/common::links"></div>
+<div th:replace="~{parts/common::links}"></div>
 </body>
 </html>

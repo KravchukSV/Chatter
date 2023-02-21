@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Profile</title>
-    <div th:replace="parts/common::common"></div>
+    <div th:replace="~{parts/common::common}"></div>
 </head>
 <body>
-<div th:replace="parts/navbar::navbar"></div>
+<div th:replace="~{parts/navbar::navbar}"></div>
 <div class="container mt-5">
     <h5 th:text="${username}"></h5>
     <div th:if="${message}">
@@ -30,6 +30,6 @@
 
 </div>
 
-<div th:replace="parts/common::links"></div>
+<div th:replace="~{parts/common::links}"></div>
 </body>
 </html>

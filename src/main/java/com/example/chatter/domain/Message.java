@@ -1,7 +1,9 @@
 package com.example.chatter.domain;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Fetch;
+import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.Length;
+
 
 @Entity
 public class Message {
@@ -9,7 +11,12 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "Pleas fill the message")
+    @Length(max = 2048, message = "Message too long (more than 2kB)")
     private String text;
+
+    @Length(max = 255, message = "Tag too long (more than 255)")
+
     private String tag;
     private String filename;
     @ManyToOne(fetch = FetchType.EAGER)

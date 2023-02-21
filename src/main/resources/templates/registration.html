@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
   <title>Registration</title>
-  <div th:replace="parts/common::common"></div>
+  <div th:replace="~{parts/common::common}"></div>
 </head>
 <body>
-<div th:replace="parts/navbar::navbar"></div>
+<div th:replace="~{parts/navbar::navbar}"></div>
   <div class="container mt-5">
     <div class="mb-1">Add new user</div>
     <div th:if="${message}">
@@ -14,6 +14,6 @@
     <div th:replace="~{parts/login::login(path=@{/registration}, isRegisterForm=true)}"></div>
   </div>
 
-  <div th:replace="parts/common::links"></div>
+  <div th:replace="~{parts/common::links}"></div>
 </body>
 </html>

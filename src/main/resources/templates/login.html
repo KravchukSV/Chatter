@@ -2,18 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Login</title>
-  <div th:replace="parts/common::common"></div>
+  <div th:replace="~{parts/common::common}"></div>
 </head>
 <body>
-<div th:replace="parts/navbar::navbar"></div>
+<div th:replace="~{parts/navbar::navbar}"></div>
   <div class="container mt-5">
     Login Page
-    <div th:if="${message}">
-      <p th:text="${message}"></p>
-    </div>
+    <div th:if="(${session} and ${session['SPRING_SECURITY_LAST_EXCEPTION']})"
+         class="alert alert-danger" role="alert"
+         th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"/>
     <div th:replace="~{parts/login::login(path=@{/login}, isRegisterForm=false)}"></div>
   </div>
 
-  <div th:replace="parts/common::links"></div>
+  <div th:replace="~{parts/common::links}"></div>
 </body>
 </html>

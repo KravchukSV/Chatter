@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Main</title>
-  <div th:replace="parts/common::common"></div>
+  <div th:replace="~{parts/common::common}"></div>
 </head>
 <body>
-<div th:replace="parts/navbar::navbar"></div>
+<div th:replace="~{parts/navbar::navbar}"></div>
 
 <div class="container mt-2">
 
@@ -21,14 +21,18 @@
   <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
     Add new Message
   </a>
-  <div class="collapse" id="collapseExample">
+  <div th:class="'collapse ' + (${message}?'show')" id="collapseExample">
     <div class="form-group m-3">
       <form method="post" th:action="@{/main}" enctype="multipart/form-data">
         <div class="form-group">
-          <input type="text" class="form-control" name="text" placeholder="Введіть повідомлення" />
+          <input type="text" th:class="'form-control ' + (${textError}?'is-invalid':'')"
+                 th:value="${message}?${message.text}" name="text" placeholder="Введіть повідомлення" />
+          <div class="invalid-feedback" th:if="${textError}" th:text="${textError}"/>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" name="tag" placeholder="Тег"/>
+          <input type="text" class="form-control"
+                 th:value="${message}?${message.tag}" name="tag" placeholder="Тег"/>
+          <div class="invalid-feedback" th:if="${tagError}" th:text="${tagError}"/>
         </div>
 
         <div class="form-group">
@@ -65,6 +69,6 @@
 </div>
 
 
-<div th:replace="parts/common::links"></div>
+<div th:replace="~{parts/common::links}"></div>
 </body>
 </html>
