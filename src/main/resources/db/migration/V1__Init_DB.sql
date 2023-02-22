@@ -28,7 +28,7 @@ create table usr (
 
 create table usr_seq (next_val bigint);
 
-insert into usr_seq values ( 1 );
+insert into usr_seq values (2);
 
 alter table message
     add constraint message_user_fk
