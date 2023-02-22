@@ -36,10 +36,18 @@ public class WebSecurityConfig{
                         .requestMatchers("/", "/registration", "/static/**", "/activate/*").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin((form) -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/", true)
-                        .permitAll()
+                .formLogin((form) -> {
+                            try {
+                                form
+                                        .loginPage("/login")
+                                        .defaultSuccessUrl("/", true)
+                                        .permitAll()
+                                        .and()
+                                        .rememberMe();
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
                 )
                 .logout((logout) -> logout.permitAll());
 

@@ -37,6 +37,13 @@
       </div>
     </div>
       <a  th:if="!${isRegisterForm}" th:href="@{/registration}">Add new user</a>
+    <div th:if="${isRegisterForm}" class="col-sm-6">
+      <div class="g-recaptcha" data-sitekey="6LejKKQkAAAAAI78fFwHrwJRuSYqdjw4oEEiG0L3"></div>
+      <div th:if="${captchaError}"
+           class="alert alert-danger" role="alert"
+           th:text="${captchaError}">
+      </div>
+    </div>
     <button class="btn btn-primary" type="submit" th:text="${isRegisterForm} ? 'Create' : 'Sign In'"></button>
   </form>
 </th:block>

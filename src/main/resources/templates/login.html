@@ -14,7 +14,8 @@
 
     <div th:if="${message}"
          th:class="'alert alert-'+${messageType}" role="alert"
-         th:text="${message}"></div>
+         th:text="${message}">
+    </div>
 
     <div th:replace="~{parts/login::login(path=@{/login}, isRegisterForm=false)}"></div>
   </div>
