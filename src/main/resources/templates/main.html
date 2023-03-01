@@ -18,54 +18,11 @@
     </div>
   </div>
 
-  <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Add new Message
-  </a>
-  <div th:class="'collapse ' + (${message}?'show')" id="collapseExample">
-    <div class="form-group m-3">
-      <form method="post" th:action="@{/main}" enctype="multipart/form-data">
-        <div class="form-group">
-          <input type="text" th:class="'form-control ' + (${textError}?'is-invalid':'')"
-                 th:value="${message}?${message.text}" name="text" placeholder="Введіть повідомлення" />
-          <div class="invalid-feedback" th:if="${textError}" th:text="${textError}"/>
-        </div>
-        <div class="form-group">
-          <input type="text" class="form-control"
-                 th:value="${message}?${message.tag}" name="tag" placeholder="Тег"/>
-          <div class="invalid-feedback" th:if="${tagError}" th:text="${tagError}"/>
-        </div>
+  <div th:replace="~{parts/messageEdit::messageEdit(action=@{/main})}"></div>
 
-        <div class="form-group">
-          <div class="custom-file">
-            <input type="file" name="file" id="customFile" class="form-control">
-            <label class="form-label" for="customFile"></label>
-          </div>
-        </div>
+  <div th:replace="~{parts/messageList::messageList}"></div>
 
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">Додати</button>
-        </div>
 
-      </form>
-    </div>
-  </div>
-
-  <div class="card-group">
-    <div th:each="message : ${messages}">
-      <div class="card m-3" style="width: 12rem;">
-        <div th:if="${message.filename}">
-          <img th:src="'/img/' + ${message.filename}" class="card-img-top">
-        </div>
-        <div class="m-2">
-          <span th:text="${message.text}"></span>
-          <i th:text="${message.tag}"></i>
-        </div>
-        <div class="card-footer text-muted">
-          <strong th:text="${message.authorName}"></strong>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 

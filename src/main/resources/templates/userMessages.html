@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Messages</title>
+    <div th:replace="~{parts/common::common}"></div>
+</head>
+<body>
+<div th:replace="~{parts/navbar::navbar}"></div>
+
+<div class="container mt-2">
+
+    <div th:if="${isCurrentUser} == true"
+         th:replace="~{parts/messageEdit::messageEdit(action=@{/user-messages/{id}(id = ${#authentication.principal.id})})}"></div>
+
+    <div th:replace="~{parts/messageList::messageList}"></div>
+
+</div>
+
+
+<div th:replace="~{parts/common::links}"></div>
+</body>
+</html>

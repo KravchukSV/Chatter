@@ -1,0 +1,23 @@
+<th:block th:fragment="messageList">
+    <div class="card-group">
+        <div th:each="message : ${messages}">
+            <div class="card m-3" style="width: 12rem;">
+                <div th:if="${message.filename}">
+                    <img th:src="'/img/' + ${message.filename}" class="card-img-top">
+                </div>
+                <div class="m-2">
+                    <span th:text="${message.text}"></span><br/>
+                    <i th:text="'#'+${message.tag}"></i>
+                </div>
+                <div class="card-footer text-muted">
+                    <a th:href="@{/user-messages/{id}(id = ${message.author.id})}" th:text="${message.authorName}"></a>
+                    <a class="btn btn-primary"
+                       th:if="${message.author.id == #authentication.principal.id}"
+                       th:href="@{/user-messages/{authorId}?message={messageId}(authorId = ${message.author.id}, messageId=${message.id})}">
+                        Edit</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
