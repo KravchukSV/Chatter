@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Subscriptions</title>
+  <div th:replace="~{parts/common::common}"></div>
+</head>
+<body>
+<div th:replace="~{parts/navbar::navbar}"></div>
+<div class="container mt-5">
+  <h3 th:text="${userChannel.username}"></h3>
+  <div th:text="${type}"></div>
+
+  <ul class="list-group" th:each="user:${users}">
+    <li class="list-group-item">
+      <a th:href="@{/user-messages/{id}(id=${user.id})}" th:text="${user.username}"></a>
+    </li>
+  </ul>
+</div>
+<div th:replace="~{parts/common::links}"></div>
+</body>
+</html>

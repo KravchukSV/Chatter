@@ -14,6 +14,7 @@
     <div th:each="role : ${roles}">
       <label><input type="checkbox" th:text="${role}" th:checked="${#arrays.contains(user.roles, role)}" th:name="${role}"></label>
     </div>
+    <input type="checkbox" th:text="ACTIVE" th:checked="${active}" name="active"><br>
     <input type="hidden" th:value="${user.id}" name="userId">
     <button type="submit">Save</button>
   </form>

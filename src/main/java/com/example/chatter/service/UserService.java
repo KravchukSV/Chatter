@@ -85,8 +85,9 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public void saveUser(User user, String username, Map<String, String> form) {
+    public void saveUser(User user, String username, Map<String, String> form, String active) {
         user.setUsername(username);
+        user.setActive(Boolean.parseBoolean(active));
 
         Set<String> roles = Arrays.stream(Role.values())
                 .map(Role::name)
@@ -125,5 +126,17 @@ public class UserService implements UserDetailsService {
         if(isEmailChanged){
             sendMessage(user);
         }
+    }
+
+    public void subscribe(User currentUser, User user) {
+        user.getSubscribers().add(currentUser);
+
+        userRepository.save(user);
+    }
+
+    public void unsubscribe(User currentUser, User user) {
+        user.getSubscribers().remove(currentUser);
+
+        userRepository.save(user);
     }
 }
